@@ -1,3 +1,4 @@
+
 # Enterprise DevOps Project
 
 This repository contains an end-to-end DevOps implementation covering:
@@ -11,5 +12,8 @@ This repository contains an end-to-end DevOps implementation covering:
 - Monitoring
 - Logging
 - Security
-- GitOps
+- gitOps
+# Enterprise DevOps Project  
+This repository contains an end-to-end DevOps implementation covering: 
+- Linux - Docker - Kubernetes - Jenkins - Terraform - AWS - Monitoring - Logging - Security - GitOps
 
