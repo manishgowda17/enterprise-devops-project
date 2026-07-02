@@ -1,0 +1,70 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+
+    container_name: enterprise-web
+
+    ports:
+      - "5000:5000"
+
+    restart: unless-stopped
+
+    environment:
+      APP_ENV: production
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: enterprise_db
+      DATABASE_USER: admin
+      DATABASE_PASSWORD: admin123
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+    depends_on:
+      - postgres
+      - redis
+
+    networks:
+      - enterprise-network
+
+  postgres:
+    image: postgres:17
+
+    container_name: enterprise-postgres
+
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: enterprise_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    networks:
+      - enterprise-network
+
+  redis:
+    image: redis:7-alpine
+
+    container_name: enterprise-redis
+
+    restart: unless-stopped
+
+    ports:
+      - "6379:6379"
+
+    networks:
+      - enterprise-network
+
+networks:
+  enterprise-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
