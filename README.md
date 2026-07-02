@@ -11,3 +11,14 @@ Created production-ready Dockerfile (security + optimized layers)
 Built and ran Docker container on EC2
 Exposed app on port 5000 and tested endpoints
 Learned Docker basics: image, container, port mapping
+
+
+Day 3 – Multi-Container Application with Docker Compose
+
+- Created a multi-container architecture using Docker Compose.
+- Integrated Flask application, PostgreSQL, and Redis.
+- Configured custom Docker bridge network for container communication.
+- Added persistent storage using Docker volumes.
+- Managed application configuration with environment variables.
+- Implemented automatic restart policies.
+- Learned service dependencies and container orchestration using Docker Compose.
