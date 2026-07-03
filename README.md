@@ -22,3 +22,5 @@ Day 3 – Multi-Container Application with Docker Compose
 - Managed application configuration with environment variables.
 - Implemented automatic restart policies.
 - Learned service dependencies and container orchestration using Docker Compose.
+
+Day 4 - Enterprise AI-Powered CI/CD Pipeline
