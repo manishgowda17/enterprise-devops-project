@@ -24,3 +24,21 @@ Day 3 – Multi-Container Application with Docker Compose
 - Learned service dependencies and container orchestration using Docker Compose.
 
 Day 4 - Enterprise AI-Powered CI/CD Pipeline
+Developer
+      │
+      ▼
+ GitHub Repository
+      │
+      ▼
+ Jenkins Pipeline
+      │
+      ├────────► Build Docker Image
+      │
+      ├────────► Validate Docker Compose
+      │
+      ├────────► Deploy Automatically
+      │
+      ├────────► Generate Build Report
+      │
+      ▼
+ Running Application
