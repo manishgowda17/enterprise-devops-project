@@ -3,3 +3,7 @@
 node_modules/
 terraform.tfstate
 terraform.tfstate.backup
+# Editor files
+*.swp
+*.swo
+*~
