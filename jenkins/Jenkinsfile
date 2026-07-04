@@ -1,57 +1,13 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "enterprise-devops:latest"
-        COMPOSE_FILE = "docker/docker-compose.yml"
-    }
-
     stages {
-
-        stage('Checkout Source Code') {
+        stage('Test') {
             steps {
-                checkout scm
+                sh 'echo "Hello from Jenkins"'
+                sh 'pwd'
+                sh 'whoami'
             }
-        }
-
-        stage('Verify Docker') {
-            steps {
-                sh 'docker --version'
-                sh 'docker compose version'
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -f docker/Dockerfile -t $IMAGE_NAME .'
-            }
-        }
-
-        stage('Deploy Application') {
-            steps {
-                sh 'docker compose -f $COMPOSE_FILE up -d --build'
-            }
-        }
-
-        stage('Verify Deployment') {
-            steps {
-                sh 'docker compose -f $COMPOSE_FILE ps'
-            }
-        }
-    }
-
-    post {
-
-        success {
-            echo '🎉 Deployment Successful!'
-        }
-
-        failure {
-            echo '❌ Deployment Failed!'
-        }
-
-        always {
-            echo 'Pipeline execution completed.'
         }
     }
 }
