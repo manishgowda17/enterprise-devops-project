@@ -1,13 +1,87 @@
+
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = "enterprise-devops"
+        IMAGE_TAG = "${BUILD_NUMBER}"
+        COMPOSE_FILE = "docker/docker-compose.yml"
+    }
+
     stages {
-        stage('Test') {
+
+        stage('Checkout Source Code') {
             steps {
-                sh 'echo "Hello from Jenkins"'
-                sh 'pwd'
-                sh 'whoami'
+                echo "Checking out source code from GitHub..."
+                checkout scm
             }
+        }
+
+        stage('Verify Environment') {
+            steps {
+                sh 'python3 --version'
+                sh 'docker --version'
+                sh 'docker compose version'
+            }
+        }
+
+        stage('Python Syntax Check') {
+            steps {
+                sh 'python3 -m py_compile app/app.py'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                docker build \
+                -f docker/Dockerfile \
+                -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                '''
+            }
+        }
+
+        stage('Deploy Application') {
+            steps {
+                sh '''
+                docker compose \
+                -f ${COMPOSE_FILE} \
+                up -d --build
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                docker compose -f ${COMPOSE_FILE} ps
+                '''
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                sh '''
+                sleep 5
+                curl -f http://localhost:5000
+                '''
+            }
+        }
+    }
+
+    post {
+
+        success {
+            echo "🎉 Build and Deployment Successful!"
+        }
+
+        failure {
+            echo "❌ Build Failed!"
+        }
+
+        always {
+            sh 'docker image prune -f || true'
+            echo "Pipeline execution completed."
         }
     }
 }
