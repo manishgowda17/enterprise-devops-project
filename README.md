@@ -23,7 +23,6 @@ Day 3 – Multi-Container Application with Docker Compose
 - Implemented automatic restart policies.
 - Learned service dependencies and container orchestration using Docker Compose.
 - 
-#  Enterprise DevOps Project
 
 ##  Day 4: Jenkins CI/CD Pipeline with AI Build Summary
 
