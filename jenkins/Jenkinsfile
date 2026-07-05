@@ -49,7 +49,7 @@ pipeline {
         stage('AI Build Summary') {
             steps {
                 echo "🤖 Generating AI Build Summary..."
-                sh 'python3 scripts/ai_build_summary.py'
+                sh 'python3 scripts/aibuild.py'
             }
         }
 
