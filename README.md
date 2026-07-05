@@ -23,22 +23,80 @@ Day 3 – Multi-Container Application with Docker Compose
 - Implemented automatic restart policies.
 - Learned service dependencies and container orchestration using Docker Compose.
 
-Day 4 - Enterprise AI-Powered CI/CD Pipeline
-Developer
-      │
-      ▼
- GitHub Repository
-      │
-      ▼
- Jenkins Pipeline
-      │
-      ├────────► Build Docker Image
-      │
-      ├────────► Validate Docker Compose
-      │
-      ├────────► Deploy Automatically
-      │
-      ├────────► Generate Build Report
-      │
-      ▼
- Running Application
+# 🚀 Enterprise DevOps Project
+
+## 📌 Day 4: Jenkins CI/CD Pipeline with AI Build Summary
+
+### Project Overview
+
+This project demonstrates an end-to-end CI/CD pipeline built using Jenkins, Docker, Docker Compose, Python, and AWS EC2. The pipeline automates application deployment while incorporating an AI-powered build summary to showcase the integration of AI into DevOps workflows.
+
+---
+
+## 🛠️ Technologies Used
+
+* Git & GitHub
+* Jenkins
+* Docker
+* Docker Compose
+* Python
+* AWS EC2 (Ubuntu)
+* Linux
+
+---
+
+## 🚀 Pipeline Workflow
+
+1. Checkout the latest source code from GitHub.
+2. Verify Docker and Docker Compose installation.
+3. Build the Docker image.
+4. Deploy the application using Docker Compose.
+5. Execute the AI Build Summary script.
+6. Perform a health check on the deployed application.
+7. Clean up unused Docker images.
+
+---
+
+## 🤖 AI Build Summary
+
+A lightweight Python script (`scripts/aibuild.py`) is executed during the pipeline to generate an automated build summary. This demonstrates how AI concepts can be integrated into CI/CD pipelines to improve deployment visibility and automate reporting.
+
+---
+
+## ✨ Features
+
+* Automated CI/CD using Jenkins
+* Docker image creation
+* Docker Compose deployment
+* AI-powered build summary
+* Automated health check
+* Automatic Docker image cleanup
+* Deployment on AWS EC2
+
+---
+
+## 📚 Key Learning Outcomes
+
+* Jenkins Declarative Pipelines
+* Docker-based application deployment
+* CI/CD automation
+* GitHub integration with Jenkins
+* AI integration into DevOps workflows
+* Troubleshooting real-world deployment issues
+
+---
+
+## ✅ Project Status
+
+The application is successfully deployed on AWS EC2 using a Jenkins CI/CD pipeline with Docker Compose and an AI-powered build summary.
+
+---
+
+## 🔜 Next Steps
+
+* Add automated testing to the pipeline
+* Integrate static code analysis
+* Improve image versioning strategy
+* Enhance AI deployment insights
+* Implement production-grade CI/CD best practices
+
