@@ -22,10 +22,10 @@ Day 3 – Multi-Container Application with Docker Compose
 - Managed application configuration with environment variables.
 - Implemented automatic restart policies.
 - Learned service dependencies and container orchestration using Docker Compose.
+- 
+#  Enterprise DevOps Project
 
-# 🚀 Enterprise DevOps Project
-
-## 📌 Day 4: Jenkins CI/CD Pipeline with AI Build Summary
+##  Day 4: Jenkins CI/CD Pipeline with AI Build Summary
 
 ### Project Overview
 
@@ -33,7 +33,7 @@ This project demonstrates an end-to-end CI/CD pipeline built using Jenkins, Dock
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 * Git & GitHub
 * Jenkins
@@ -45,7 +45,7 @@ This project demonstrates an end-to-end CI/CD pipeline built using Jenkins, Dock
 
 ---
 
-## 🚀 Pipeline Workflow
+## Pipeline Workflow
 
 1. Checkout the latest source code from GitHub.
 2. Verify Docker and Docker Compose installation.
@@ -57,13 +57,13 @@ This project demonstrates an end-to-end CI/CD pipeline built using Jenkins, Dock
 
 ---
 
-## 🤖 AI Build Summary
+## AI Build Summary
 
 A lightweight Python script (`scripts/aibuild.py`) is executed during the pipeline to generate an automated build summary. This demonstrates how AI concepts can be integrated into CI/CD pipelines to improve deployment visibility and automate reporting.
 
 ---
 
-## ✨ Features
+## Features
 
 * Automated CI/CD using Jenkins
 * Docker image creation
@@ -75,7 +75,7 @@ A lightweight Python script (`scripts/aibuild.py`) is executed during the pipeli
 
 ---
 
-## 📚 Key Learning Outcomes
+## Key Learning Outcomes
 
 * Jenkins Declarative Pipelines
 * Docker-based application deployment
@@ -83,20 +83,3 @@ A lightweight Python script (`scripts/aibuild.py`) is executed during the pipeli
 * GitHub integration with Jenkins
 * AI integration into DevOps workflows
 * Troubleshooting real-world deployment issues
-
----
-
-## ✅ Project Status
-
-The application is successfully deployed on AWS EC2 using a Jenkins CI/CD pipeline with Docker Compose and an AI-powered build summary.
-
----
-
-## 🔜 Next Steps
-
-* Add automated testing to the pipeline
-* Integrate static code analysis
-* Improve image versioning strategy
-* Enhance AI deployment insights
-* Implement production-grade CI/CD best practices
-
