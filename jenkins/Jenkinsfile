@@ -1,4 +1,5 @@
 pipeline {
+
     agent any
 
     environment {
@@ -16,9 +17,16 @@ pipeline {
             }
         }
 
+        stage('Project Validation') {
+            steps {
+                echo "🔍 Running project validation..."
+                sh './scripts/validate.sh'
+            }
+        }
+
         stage('Verify Docker') {
             steps {
-                echo "🔍 Verifying Docker installation..."
+                echo "🐳 Verifying Docker installation..."
                 sh 'docker --version'
                 sh 'docker compose version'
             }
@@ -26,58 +34,138 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                echo "🐳 Building Docker image..."
-                sh '''
+                echo "🏗️ Building Docker image..."
+
+                sh """
                 docker build \
                 -f docker/Dockerfile \
                 -t ${IMAGE_NAME}:${IMAGE_TAG} .
-                '''
+                """
             }
         }
 
         stage('Deploy Application') {
             steps {
+
                 echo "🚀 Deploying application..."
-                sh '''
+
+                sh """
                 docker compose \
                 -f ${COMPOSE_FILE} \
                 up -d --build
-                '''
+                """
             }
         }
 
-        stage('AI Build Summary') {
+        stage('AI Deployment Analyzer') {
             steps {
-                echo "🤖 Generating AI Build Summary..."
+
+                echo "🤖 Running AI Deployment Analyzer..."
+
                 sh 'python3 scripts/aibuild.py'
             }
         }
 
         stage('Health Check') {
+
             steps {
-                echo "🩺 Checking application health..."
-                sh '''
-                sleep 5
-                curl -f http://localhost:5000
-                '''
+
+                script {
+
+                    echo "🩺 Checking Application Health..."
+
+                    def status = sh(
+                        script: '''
+                        sleep 5
+                        curl -f http://localhost:5000
+                        ''',
+                        returnStatus: true
+                    )
+
+                    if (status != 0) {
+
+                        echo "❌ Health Check Failed"
+
+                        sh """
+                        docker compose \
+                        -f ${COMPOSE_FILE} \
+                        logs
+                        """
+
+                        error("Application failed health check.")
+
+                    }
+
+                    echo "✅ Application is Healthy"
+
+                }
+
             }
+
         }
+
+        stage('Pipeline Summary') {
+
+            steps {
+
+                echo """
+
+==========================================
+          PIPELINE SUMMARY
+==========================================
+
+Build Number : ${BUILD_NUMBER}
+
+Job Name     : ${JOB_NAME}
+
+Docker Image : ${IMAGE_NAME}:${IMAGE_TAG}
+
+Deployment   : SUCCESS
+
+AI Report    : reports/deployment_report.txt
+
+==========================================
+
+"""
+
+            }
+
+        }
+
     }
 
     post {
 
         success {
-            echo "✅ Deployment completed successfully!"
+
+            echo "🎉 Deployment Successful!"
+
         }
 
         failure {
-            echo "❌ Deployment failed!"
+
+            echo "❌ Deployment Failed!"
+
         }
 
         always {
-            echo "🧹 Cleaning unused Docker images..."
-            sh 'docker image prune -f || true'
-            echo "🎉 Pipeline execution completed."
+
+            echo "📦 Archiving AI Deployment Report..."
+
+            archiveArtifacts artifacts: 'reports/deployment_report.txt',
+                             fingerprint: true
+
+            echo "🧹 Cleaning Docker Images..."
+
+            sh '''
+            docker image prune -f
+            docker builder prune -f
+            '''
+
+            echo "✅ Pipeline Finished."
+
         }
+
     }
+
 }
