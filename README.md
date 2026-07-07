@@ -84,6 +84,7 @@ A lightweight Python script (`scripts/aibuild.py`) is executed during the pipeli
 * Troubleshooting real-world deployment issues
 
 Day 5
+
 Project validation (scripts/validate.sh)
 Enhanced health check with Docker logs on failure
 Pipeline summary
