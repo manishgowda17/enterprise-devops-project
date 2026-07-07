@@ -187,3 +187,7 @@ enterprise-devops-project/
 ---
 
 # 📸 Project Screenshots
+
+
+<img width="1920" height="918" alt="jen ai analysis" src="https://github.com/user-attachments/assets/64a83b42-9d22-4608-9200-d18ae5559e72" />
+
