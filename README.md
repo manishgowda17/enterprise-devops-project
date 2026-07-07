@@ -188,6 +188,108 @@ enterprise-devops-project/
 
 # 📸 Project Screenshots
 
+AI ANALYSIS
+
 
 <img width="1920" height="918" alt="jen ai analysis" src="https://github.com/user-attachments/assets/64a83b42-9d22-4608-9200-d18ae5559e72" />
 
+
+AI ANALYZER
+
+
+<img width="1920" height="918" alt="jen ai analyzer" src="https://github.com/user-attachments/assets/45761610-0ee4-4dfd-beb7-bad069701631" />
+
+
+JENKINS DASHBOARD
+
+
+<img width="1920" height="918" alt="jen dashboard" src="https://github.com/user-attachments/assets/e3bb4c5b-4fa8-4bc6-92d8-9e119e598698" />
+
+
+JENKINS REPORT
+
+
+<img width="1920" height="918" alt="jen report" src="https://github.com/user-attachments/assets/2e8046bf-bd65-491a-8f9f-935dab62de8d" />
+
+
+SECURITY SCAN
+
+
+<img width="1920" height="918" alt="jen scan" src="https://github.com/user-attachments/assets/a59fd702-959f-4f4d-a80e-b6096fa84848" />
+
+
+JENKINS SUCCESS
+
+
+<img width="1920" height="918" alt="jen success" src="https://github.com/user-attachments/assets/ab6eeb97-443b-4cc6-a7ef-a063e8060e21" />
+
+
+
+# Installation
+
+``` bash
+git clone https://github.com/manishgowda17/enterprise-devops-project.git
+cd enterprise-devops-project
+docker compose -f docker/docker-compose.yml up -d --build
+```
+
+Access:
+
+http://`<EC2_PUBLIC_IP>`{=html}:5000
+
+# Jenkins Pipeline
+
+Stages:
+
+1.  Checkout Source Code
+2.  Verify Docker
+3.  Build Docker Image
+4.  Deploy Application
+5.  AI Build Summary
+6.  Health Check
+7.  Archive Reports
+8.  Cleanup
+
+# DevSecOps
+
+-   validate.sh validates project structure.
+-   security_scan.sh performs lightweight security checks.
+-   aibuild.py generates build summaries.
+
+# Health Monitoring
+
+Endpoints:
+
+-   /
+-   /health
+-   /version
+-   /metrics
+
+# Reports
+
+Generated reports:
+
+-   deployment_report.txt
+-   security_report.txt
+
+# Resume Highlights
+
+-   Built a complete CI/CD pipeline.
+-   Automated Docker deployments.
+-   Integrated validation and security scripts.
+-   Implemented AI build reporting.
+-   Deployed on AWS EC2.
+-   Added health monitoring and deployment reports.
+
+# Author
+
+**Manish Gowda S N**
+
+DevOps Engineer \| AWS \| Docker \| Jenkins \| Python \| Linux
+
+# License
+
+MIT License
+
+If this repository helped you, please ⭐ star it.
+  
