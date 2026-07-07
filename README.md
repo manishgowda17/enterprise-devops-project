@@ -82,3 +82,13 @@ A lightweight Python script (`scripts/aibuild.py`) is executed during the pipeli
 * GitHub integration with Jenkins
 * AI integration into DevOps workflows
 * Troubleshooting real-world deployment issues
+
+Day 5
+Project validation (scripts/validate.sh)
+Enhanced health check with Docker logs on failure
+Pipeline summary
+AI deployment report generation
+Artifact archiving
+Smart Docker cleanup (image prune and builder prune)
+Production-style Jenkins pipeline
+Final testing and successful deployment
