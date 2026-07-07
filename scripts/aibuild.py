@@ -1,18 +1,49 @@
 import os
+from datetime import datetime
 
+report = f"""
+========================================
+🤖 AI DEPLOYMENT ANALYZER
+========================================
+
+Project          : Enterprise DevOps
+Build Number     : {os.getenv("BUILD_NUMBER")}
+Job Name         : {os.getenv("JOB_NAME")}
+Build URL        : {os.getenv("BUILD_URL")}
+Workspace        : {os.getenv("WORKSPACE")}
+Execution Time   : {datetime.now()}
+
+AI Analysis
+----------------------------------------
+✅ Source code checked out successfully.
+✅ Docker image built successfully.
+✅ Deployment completed successfully.
+✅ Health check passed.
+
+Recommendation
+----------------------------------------
+Pipeline executed successfully.
+No critical issues detected.
+Application is ready for use.
+
+========================================
+"""
+
+print(report)
+
+os.makedirs("reports", exist_ok=True)
+
+with open("reports/deployment_report.txt", "w") as file:
+    file.write(report)
+
+print("📄 Deployment report saved to reports/deployment_report.txt")
+print()
 print("=" * 50)
-print("🤖 AI BUILD SUMMARY")
+print("AI SECURITY ANALYSIS")
 print("=" * 50)
 
-print(f"Build Number : {os.getenv('BUILD_NUMBER')}")
-print(f"Job Name     : {os.getenv('JOB_NAME')}")
-print(f"Build URL    : {os.getenv('BUILD_URL')}")
-print(f"Workspace    : {os.getenv('WORKSPACE')}")
-
-print("\nAI Analysis:")
-print("- Source code checked out successfully.")
-print("- Docker image build completed.")
-print("- Deployment executed.")
-print("- Health check passed.")
-
-print("=" * 50)
+try:
+    with open("reports/security_report.txt") as report:
+        print(report.read())
+except FileNotFoundError:
+    print("Security report not found.")

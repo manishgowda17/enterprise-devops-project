@@ -1,0 +1,18 @@
+Security Scan Report
+Generated on: Tue Jul  7 04:17:19 UTC 2026
+
+[WARNING] AWS_ACCESS_KEY_ID found
+[WARNING] AWS_SECRET_ACCESS_KEY found
+[WARNING] GITHUB_TOKEN found
+[WARNING] API_KEY found
+[WARNING] SECRET_KEY found
+[WARNING] PRIVATE KEY found
+[WARNING] PASSWORD= found
+
+Security Scan Completed.
+Checking Python dependencies...
+[PASS] requirements.txt found.
+Checking Dockerfile...
+[PASS] Dockerfile found.
+Checking Docker Compose...
+[PASS] docker-compose.yml found.

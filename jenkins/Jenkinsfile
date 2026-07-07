@@ -65,6 +65,17 @@ pipeline {
                 sh 'python3 scripts/aibuild.py'
             }
         }
+        stage('Security Scan') {
+
+    steps {
+
+        echo "🔒 Running Security Scan..."
+
+        sh './scripts/security_scan.sh'
+
+    }
+
+}
 
         stage('Health Check') {
 
@@ -153,6 +164,8 @@ AI Report    : reports/deployment_report.txt
             echo "📦 Archiving AI Deployment Report..."
 
             archiveArtifacts artifacts: 'reports/deployment_report.txt',
+                             fingerprint: true
+            archiveArtifacts artifacts: 'reports/*.txt',
                              fingerprint: true
 
             echo "🧹 Cleaning Docker Images..."
