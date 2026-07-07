@@ -1,4 +1,4 @@
-🚀 Enterprise DevOps Platform
+# 🚀 Enterprise DevOps Platform
 
 
 
@@ -9,8 +9,7 @@
 
 
 
-
-📖 Project Overview
+# 📖 Project Overview
 
 Enterprise DevOps Platform is a complete end-to-end DevOps project that demonstrates how a modern application can be built, containerized, validated, secured, deployed, and monitored using industry-standard DevOps tools.
 
