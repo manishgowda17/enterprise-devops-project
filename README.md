@@ -19,102 +19,143 @@ The project was developed as a hands-on learning experience by implementing a re
 Instead of focusing only on deployment, this project also integrates lightweight DevSecOps practices such as security validation, project validation, AI-assisted build reporting, health monitoring, and deployment reporting.
 
 The objective was to simulate a production-style DevOps workflow while keeping the infrastructure lightweight enough to run on a free-tier AWS EC2 instance.
+# 🎯 Project Objectives
 
-🎯 Project Objectives
-Build a complete CI/CD pipeline using Jenkins
-Containerize a Python Flask application using Docker
-Deploy the application using Docker Compose
-Integrate project validation before deployment
-Perform lightweight DevSecOps security scanning
-Generate AI-based deployment summaries
-Automate health verification
-Archive deployment and security reports
-Deploy successfully on AWS EC2
-Maintain a professional GitHub repository
-✨ Key Features
-🔄 Continuous Integration
-Automatic source code checkout
-Jenkins Declarative Pipeline
-Automated Docker image build
-Build verification
-Pipeline logging
-🚀 Continuous Deployment
-Docker Compose deployment
-Automatic container recreation
-Production deployment workflow
-Automated application startup
-🔒 DevSecOps
-Secret detection
-Project validation
-Docker configuration validation
-Dependency validation
-Security report generation
-🤖 AI Build Analyzer
+The primary objectives of this project are:
 
-Custom Python script generates:
+- Automate software build and deployment using Jenkins
+- Containerize applications using Docker
+- Deploy applications using Docker Compose
+- Integrate DevSecOps practices into CI/CD
+- Perform project validation before deployment
+- Generate AI-assisted deployment summaries
+- Monitor application health
+- Archive deployment and security reports
+- Demonstrate a production-style DevOps workflow
 
-Build Number
-Job Name
-Workspace Details
-Deployment Status
-Security Summary
-Build Report
-❤️ Health Monitoring
+---
 
-Application provides monitoring endpoints:
+# ✨ Key Features
 
-/
-/health
-/version
-/metrics
-☁ Cloud Deployment
+## 🔄 Continuous Integration (CI)
 
-Hosted on:
+- Automated source code checkout from GitHub
+- Jenkins Declarative Pipeline
+- Docker image build automation
+- Build verification
+- Automated deployment process
 
-AWS EC2
-Ubuntu Linux
-Docker Engine
-Jenkins
-🛠 Technology Stack
-Category	Technology
-Programming	Python 3
-Web Framework	Flask
-Version Control	Git
-Repository	GitHub
-CI/CD	Jenkins
-Containerization	Docker
-Orchestration	Docker Compose
-Cloud	AWS EC2
-Operating System	Ubuntu Linux
-Scripting	Bash
-Security	Custom DevSecOps Validation
-Monitoring	Health Endpoints
-Reporting	AI Build Analyzer
-🏗 Architecture
+---
+
+## 🚀 Continuous Deployment (CD)
+
+- Docker Compose deployment
+- Automatic container recreation
+- One-click deployment using Jenkins
+- Health verification after deployment
+
+---
+
+## 🔒 DevSecOps Features
+
+- Secret detection
+- Project validation
+- Docker configuration validation
+- Dependency validation
+- Security report generation
+
+---
+
+## 🤖 AI Build Analyzer
+
+A custom Python script generates deployment summaries containing:
+
+- Build Number
+- Job Name
+- Workspace Information
+- Deployment Status
+- Security Summary
+- Build Report
+
+---
+
+## ❤️ Health Monitoring
+
+The application exposes monitoring endpoints:
+
+| Endpoint | Description |
+|----------|-------------|
+| `/` | Enterprise Dashboard |
+| `/health` | Application Health Status |
+| `/version` | Application Version |
+| `/metrics` | Basic Application Metrics |
+
+---
+
+## ☁ Cloud Deployment
+
+The application is deployed on:
+
+- AWS EC2 (Ubuntu)
+- Docker Engine
+- Docker Compose
+- Jenkins
+
+---
+
+# 🛠 Technology Stack
+
+| Category | Technology |
+|-----------|------------|
+| Programming Language | Python 3 |
+| Web Framework | Flask |
+| Version Control | Git |
+| Repository Hosting | GitHub |
+| CI/CD | Jenkins |
+| Containerization | Docker |
+| Container Orchestration | Docker Compose |
+| Cloud Platform | AWS EC2 |
+| Operating System | Ubuntu Linux |
+| Scripting | Bash |
+| DevSecOps | Custom Security Scanner |
+| Monitoring | Health Endpoints |
+| Reporting | AI Build Analyzer |
+
+---
+
+# 🏗 Project Architecture
+
+```text
                         GitHub Repository
                                │
                                ▼
                         Jenkins Pipeline
                                │
-        ┌──────────────────────┼──────────────────────┐
-        ▼                      ▼                      ▼
- Project Validation     Security Scan        AI Build Analysis
-        │
-        ▼
+         ┌─────────────────────┼─────────────────────┐
+         ▼                     ▼                     ▼
+ Project Validation     Security Scan       AI Build Analysis
+         │
+         ▼
  Docker Image Build
-        │
-        ▼
+         │
+         ▼
  Docker Compose Deployment
-        │
-        ▼
- Flask Application
-        │
-        ▼
+         │
+         ▼
+ Flask Web Application
+         │
+         ▼
  Health Monitoring
-        │
-        ▼
- Deployment Reports
-📂 Project Structure
+         │
+         ▼
+ Deployment & Security Reports
+```
+
+---
+
+# 📂 Project Structure
+
+```text
 enterprise-devops-project/
 │
 ├── app/
@@ -142,3 +183,8 @@ enterprise-devops-project/
 ├── README.md
 │
 └── .gitignore
+```
+
+---
+
+# 📸 Project Screenshots
