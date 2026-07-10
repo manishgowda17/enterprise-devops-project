@@ -1,8 +1,23 @@
 from flask import Flask, jsonify
+from models import db, Employee
 import os
 from datetime import datetime
 
 app = Flask(__name__)
+
+DB_HOST = os.getenv("DATABASE_HOST", "postgres")
+DB_PORT = os.getenv("DATABASE_PORT", "5432")
+DB_NAME = os.getenv("DATABASE_NAME", "enterprise_db")
+DB_USER = os.getenv("DATABASE_USER", "admin")
+DB_PASSWORD = os.getenv("DATABASE_PASSWORD", "admin123")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
+
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db.init_app(app)
 
 BUILD_NUMBER = os.getenv("BUILD_NUMBER", "Local Build")
 ENVIRONMENT = os.getenv("ENVIRONMENT", "Production")
@@ -162,7 +177,50 @@ def metrics():
         "jenkins": "Connected",
         "deployment": "Successful"
     })
+@app.route("/employees")
+def employees():
 
+    employee_list = Employee.query.all()
+
+    data = []
+
+    for emp in employee_list:
+        data.append({
+            "id": emp.id,
+            "name": emp.name,
+            "email": emp.email,
+            "role": emp.role,
+            "department": emp.department
+        })
+
+    return jsonify(data)
+with app.app_context():
+    db.create_all()
+
+    if Employee.query.count() == 0:
+        sample_employees = [
+            Employee(
+                name="Manish Gowda",
+                email="manish@enterprise.com",
+                role="DevOps Engineer",
+                department="Platform"
+            ),
+            Employee(
+                name="mishh",
+                email="mishh@enterprise.com",
+                role="Cloud Engineer",
+                department="Cloud"
+            ),
+            Employee(
+                name="man",
+                email="man@enterprise.com",
+                role="Site Reliability Engineer",
+                department="Operations"
+            )
+        ]
+
+        db.session.add_all(sample_employees)
+        db.session.commit()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
