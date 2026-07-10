@@ -1,5 +1,6 @@
-from flask import Flask, jsonify
-from models import db, Employee
+from flask import Flask, jsonify,requests
+from models import db, Deployment
+from sqlalchemy import text
 import os
 from datetime import datetime
 
@@ -177,50 +178,43 @@ def metrics():
         "jenkins": "Connected",
         "deployment": "Successful"
     })
-@app.route("/employees")
-def employees():
+@app.route("/deployment")
+def deployment():
 
-    employee_list = Employee.query.all()
+    latest = Deployment.query.order_by(
+        Deployment.id.desc()
+    ).first()
 
-    data = []
-
-    for emp in employee_list:
-        data.append({
-            "id": emp.id,
-            "name": emp.name,
-            "email": emp.email,
-            "role": emp.role,
-            "department": emp.department
+    if latest is None:
+        return jsonify({
+            "message": "No deployment found"
         })
+
+    return jsonify({
+        "build_number": latest.build_number,
+        "version": latest.version,
+        "environment": latest.environment,
+        "status": latest.status,
+        "deployed_at": latest.deployed_at
+    })
+@app.route("/db-status")
+def db_status():
+    try:
+        db.session.execute(text("SELECT 1"))
+        return jsonify({
+            "database": "PostgreSQL",
+            "status": "Connected"
+        })
+    except Exception as e:
+        return jsonify({
+            "database": "PostgreSQL",
+            "status": "Disconnected",
+            "error": str(e)
+        }), 500
 
     return jsonify(data)
 with app.app_context():
     db.create_all()
-
-    if Employee.query.count() == 0:
-        sample_employees = [
-            Employee(
-                name="Manish Gowda",
-                email="manish@enterprise.com",
-                role="DevOps Engineer",
-                department="Platform"
-            ),
-            Employee(
-                name="mishh",
-                email="mishh@enterprise.com",
-                role="Cloud Engineer",
-                department="Cloud"
-            ),
-            Employee(
-                name="man",
-                email="man@enterprise.com",
-                role="Site Reliability Engineer",
-                department="Operations"
-            )
-        ]
-
-        db.session.add_all(sample_employees)
-        db.session.commit()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
