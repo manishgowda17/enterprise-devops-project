@@ -1,16 +1,25 @@
 from flask import Flask, jsonify,requests
 from models import db, Deployment
 from sqlalchemy import text
+import redis
 import os
 from datetime import datetime
 
 app = Flask(__name__)
 
-DB_HOST = os.getenv("DATABASE_HOST", "postgres")
-DB_PORT = os.getenv("DATABASE_PORT", "5432")
-DB_NAME = os.getenv("DATABASE_NAME", "enterprise_db")
-DB_USER = os.getenv("DATABASE_USER", "admin")
-DB_PASSWORD = os.getenv("DATABASE_PASSWORD", "admin123")
+REDIS_HOST = os.getenv("REDIS_HOST", "redis")
+REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
+redis_client = redis.Redis(
+    host=REDIS_HOST,
+    port=REDIS_PORT,
+    decode_responses=True
+)
+
+DB_HOST = os.getenv("DATABASE_HOST")
+DB_PORT = os.getenv("DATABASE_PORT")
+DB_NAME = os.getenv("DATABASE_NAME")
+DB_USER = os.getenv("DATABASE_USER")
+DB_PASSWORD = os.getenv("DATABASE_PASSWORD")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = (
     f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
@@ -209,6 +218,22 @@ def db_status():
         return jsonify({
             "database": "PostgreSQL",
             "status": "Disconnected",
+            "error": str(e)
+        }), 500
+@app.route("/redis-status")
+def redis_status():
+    try:
+        redis_client.ping()
+
+        return jsonify({
+            "redis": "Connected",
+            "status": "Healthy"
+        })
+
+    except Exception as e:
+
+        return jsonify({
+            "redis": "Disconnected",
             "error": str(e)
         }), 500
 
