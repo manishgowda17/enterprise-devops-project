@@ -1,4 +1,4 @@
-from flask import Flask, jsonify,requests
+from flask import Flask, jsonify
 from models import db, Deployment
 from sqlalchemy import text
 import redis
