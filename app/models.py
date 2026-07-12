@@ -23,4 +23,4 @@ class Deployment(db.Model):
     )
 
     def __repr__(self):
-        return f"<Deployment {self.build_number}>".
+        return f"<Deployment {self.build_number}>"
