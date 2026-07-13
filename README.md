@@ -291,7 +291,7 @@ AWS EC2
 
 ---
 
-# ▶ Running the Project
+# Running the Project
 
 Clone the repository
 
@@ -301,9 +301,10 @@ git clone https://github.com/manishgowda17/enterprise-devops-project.git
 
 Go to project directory
 
-bash
+```bash
 cd enterprise-devops-project
 ```
+
 Build Docker image
 
 ```bash
@@ -312,11 +313,12 @@ docker build -f docker/Dockerfile -t enterprise-devops .
 
 Run using Docker Compose
 
-bash
+```bash
 docker compose -f docker/docker-compose.yml up -d
 ```
 
 Access application
+
 
 ```
 http://<EC2-Public-IP>
