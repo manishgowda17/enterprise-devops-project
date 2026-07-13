@@ -1,295 +1,371 @@
-# 🚀 Enterprise DevOps Platform
 
+  
+# Enterprise DevOps Platform
 
+An end-to-end Enterprise DevOps Project demonstrating a complete CI/CD pipeline using **Jenkins**, **Docker**, **Docker Compose**, **Nginx**, **PostgreSQL**, **Redis**, and **AWS EC2**.
 
-
-
-
-
-
-
-
-# 📖 Project Overview
-
-Enterprise DevOps Platform is a complete end-to-end DevOps project that demonstrates how a modern application can be built, containerized, validated, secured, deployed, and monitored using industry-standard DevOps tools.
-
-The project was developed as a hands-on learning experience by implementing a real Continuous Integration and Continuous Deployment (CI/CD) pipeline on an AWS EC2 instance using Jenkins, Docker, Docker Compose, Linux, Git, and Python.
-
-Instead of focusing only on deployment, this project also integrates lightweight DevSecOps practices such as security validation, project validation, AI-assisted build reporting, health monitoring, and deployment reporting.
-
-The objective was to simulate a production-style DevOps workflow while keeping the infrastructure lightweight enough to run on a free-tier AWS EC2 instance.
-# 🎯 Project Objectives
-
-The primary objectives of this project are:
-
-- Automate software build and deployment using Jenkins
-- Containerize applications using Docker
-- Deploy applications using Docker Compose
-- Integrate DevSecOps practices into CI/CD
-- Perform project validation before deployment
-- Generate AI-assisted deployment summaries
-- Monitor application health
-- Archive deployment and security reports
-- Demonstrate a production-style DevOps workflow
+The application itself is intentionally simple—the primary objective of this project is to showcase an automated DevOps workflow from source code to production deployment.
 
 ---
 
-# ✨ Key Features
+## Project Overview
 
-## 🔄 Continuous Integration (CI)
+This project demonstrates how modern DevOps practices automate software delivery.
 
-- Automated source code checkout from GitHub
-- Jenkins Declarative Pipeline
-- Docker image build automation
-- Build verification
-- Automated deployment process
+Whenever code is pushed to GitHub, Jenkins automatically:
 
----
-
-## 🚀 Continuous Deployment (CD)
-
-- Docker Compose deployment
-- Automatic container recreation
-- One-click deployment using Jenkins
-- Health verification after deployment
+- Retrieves the latest source code
+- Builds the Docker image
+- Performs security and deployment checks
+- Deploys the application using Docker Compose
+- Starts all required services
+- Runs health verification
+- Makes the application available on AWS EC2
 
 ---
 
-## 🔒 DevSecOps Features
+# Architecture
 
-- Secret detection
-- Project validation
-- Docker configuration validation
-- Dependency validation
-- Security report generation
-
----
-
-## 🤖 AI Build Analyzer
-
-A custom Python script generates deployment summaries containing:
-
-- Build Number
-- Job Name
-- Workspace Information
-- Deployment Status
-- Security Summary
-- Build Report
-
----
-
-## ❤️ Health Monitoring
-
-The application exposes monitoring endpoints:
-
-| Endpoint | Description |
-|----------|-------------|
-| `/` | Enterprise Dashboard |
-| `/health` | Application Health Status |
-| `/version` | Application Version |
-| `/metrics` | Basic Application Metrics |
-
----
-
-## ☁ Cloud Deployment
-
-The application is deployed on:
-
-- AWS EC2 (Ubuntu)
-- Docker Engine
-- Docker Compose
-- Jenkins
-
----
-
-# 🛠 Technology Stack
-
-| Category | Technology |
-|-----------|------------|
-| Programming Language | Python 3 |
-| Web Framework | Flask |
-| Version Control | Git |
-| Repository Hosting | GitHub |
-| CI/CD | Jenkins |
-| Containerization | Docker |
-| Container Orchestration | Docker Compose |
-| Cloud Platform | AWS EC2 |
-| Operating System | Ubuntu Linux |
-| Scripting | Bash |
-| DevSecOps | Custom Security Scanner |
-| Monitoring | Health Endpoints |
-| Reporting | AI Build Analyzer |
-
----
-
-# 🏗 Project Architecture
-
-```text
-                        GitHub Repository
-                               │
-                               ▼
-                        Jenkins Pipeline
-                               │
-         ┌─────────────────────┼─────────────────────┐
-         ▼                     ▼                     ▼
- Project Validation     Security Scan       AI Build Analysis
-         │
-         ▼
- Docker Image Build
-         │
-         ▼
+```
+                 GitHub Repository
+                        │
+                        ▼
+                 Jenkins Pipeline
+                        │
+        ┌───────────────┼───────────────┐
+        ▼               ▼               ▼
+ Docker Build     Security Scan     AI Analyzer
+        │
+        ▼
  Docker Compose Deployment
-         │
-         ▼
- Flask Web Application
-         │
-         ▼
- Health Monitoring
-         │
-         ▼
- Deployment & Security Reports
+        │
+ ┌──────┴─────────────┐
+ ▼                    ▼
+Flask App          Nginx
+ │
+ ├──────────────┐
+ ▼              ▼
+PostgreSQL    Redis
+        │
+        ▼
+AWS EC2 Production Server
 ```
 
 ---
 
-# 📂 Project Structure
+# Tech Stack
 
-```text
+| Category | Technologies |
+|----------|--------------|
+| Language | Python |
+| Framework | Flask |
+| CI/CD | Jenkins |
+| Containerization | Docker |
+| Orchestration | Docker Compose |
+| Reverse Proxy | Nginx |
+| Database | PostgreSQL |
+| Cache | Redis |
+| Cloud | AWS EC2 |
+| Version Control | Git & GitHub |
+| Web Server | Gunicorn |
+
+---
+
+# Project Structure
+
+```
 enterprise-devops-project/
-│
+
 ├── app/
 │   ├── app.py
-│   └── requirements.txt
+│   ├── models.py
+│   ├── requirements.txt
+│   └── ...
 │
 ├── docker/
 │   ├── Dockerfile
-│   └── docker-compose.yml
+│   ├── docker-compose.yml
+│   └── nginx.conf
 │
-├── jenkins/
-│   └── Jenkinsfile
-│
-├── scripts/
-│   ├── validate.sh
-│   ├── security_scan.sh
-│   └── aibuild.py
-│
-├── reports/
-│   ├── deployment_report.txt
-│   └── security_report.txt
-│
-├── screenshots/
+├── Jenkinsfile
 │
 ├── README.md
 │
-└── .gitignore
+└── screenshots/
 ```
 
 ---
 
-# 📸 Project Screenshots
+#  CI/CD Pipeline
 
-AI ANALYSIS
+The Jenkins pipeline performs the following stages:
 
+### 1️. Source Code Checkout
 
-<img width="1920" height="918" alt="jen ai analysis" src="https://github.com/user-attachments/assets/64a83b42-9d22-4608-9200-d18ae5559e72" />
+- Fetches latest code from GitHub
 
+---
 
-AI ANALYZER
+### 2️. Build Docker Image
 
+- Creates Docker image
+- Tags image
+- Validates build
 
-<img width="1920" height="918" alt="jen ai analyzer" src="https://github.com/user-attachments/assets/45761610-0ee4-4dfd-beb7-bad069701631" />
+---
 
+### 3️. Deploy Application
 
-JENKINS DASHBOARD
+Uses Docker Compose to deploy:
 
+- Flask Application
+- PostgreSQL
+- Redis
+- Nginx
 
-<img width="1920" height="918" alt="jen dashboard" src="https://github.com/user-attachments/assets/e3bb4c5b-4fa8-4bc6-92d8-9e119e598698" />
+---
 
+### 4️. AI Deployment Analyzer
 
-JENKINS REPORT
+Performs deployment validation.
 
+---
 
-<img width="1920" height="918" alt="jen report" src="https://github.com/user-attachments/assets/2e8046bf-bd65-491a-8f9f-935dab62de8d" />
+### 5. DevSecOps Security Scan
 
+Checks the deployment for common security issues.
 
-SECURITY SCAN
+---
 
+### 6️. Health Check
 
-<img width="1920" height="918" alt="jen scan" src="https://github.com/user-attachments/assets/a59fd702-959f-4f4d-a80e-b6096fa84848" />
+Verifies:
 
+- Application availability
+- Running containers
+- Deployment success
 
-JENKINS SUCCESS
+---
 
+### 7. Pipeline Summary
 
-<img width="1920" height="918" alt="jen success" src="https://github.com/user-attachments/assets/ab6eeb97-443b-4cc6-a7ef-a063e8060e21" />
+Archives reports and completes deployment.
 
+---
 
+# Docker Services
 
-# Installation
+The application consists of four containers:
 
-``` bash
-git clone https://github.com/manishgowda17/enterprise-devops-project.git
-cd enterprise-devops-project
-docker compose -f docker/docker-compose.yml up -d --build
+| Container | Purpose |
+|-----------|----------|
+| Flask | Web Application |
+| PostgreSQL | Database |
+| Redis | Cache |
+| Nginx | Reverse Proxy |
+
+---
+
+# Application Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `/` | Home Page |
+| `/health` | Health Status |
+| `/version` | Version Information |
+| `/metrics` | Deployment Metrics |
+| `/deployment` | Latest Deployment |
+| `/db-status` | PostgreSQL Status |
+| `/redis-status` | Redis Status |
+
+---
+
+# Deployment Workflow
+
+```
+Developer
+
+     │
+
+     ▼
+
+GitHub Push
+
+     │
+
+     ▼
+
+Jenkins Pipeline
+
+     │
+
+     ▼
+
+Docker Image Build
+
+     │
+
+     ▼
+
+Docker Compose Deployment
+
+     │
+
+     ▼
+
+Nginx Reverse Proxy
+
+     │
+
+     ▼
+
+Flask Application
+
+     │
+
+ ┌───┴────┐
+
+ ▼        ▼
+
+PostgreSQL   Redis
+
+     │
+
+     ▼
+
+AWS EC2
 ```
 
-Access:
+---
 
-http://`<EC2_PUBLIC_IP>`{=html}:5000
+#  Project Screenshots
 
-# Jenkins Pipeline
+#RUNNING PROJECT VALIDATION
 
-Stages:
 
-1.  Checkout Source Code
-2.  Verify Docker
-3.  Build Docker Image
-4.  Deploy Application
-5.  AI Build Summary
-6.  Health Check
-7.  Archive Reports
-8.  Cleanup
+<img width="1920" height="918" alt="running project validation" src="https://github.com/user-attachments/assets/2b9d6b0c-7263-48eb-8986-4c535c6328da" />
 
-# DevSecOps
 
--   validate.sh validates project structure.
--   security_scan.sh performs lightweight security checks.
--   aibuild.py generates build summaries.
+#AI DEPLOYMENT ANALYZER
 
-# Health Monitoring
 
-Endpoints:
+<img width="1920" height="918" alt="ai deployment analyzer" src="https://github.com/user-attachments/assets/78777ff1-49a7-4834-9fe8-104082dba738" />
 
--   /
--   /health
--   /version
--   /metrics
 
-# Reports
+#AI SECURITY ANALYSIS
 
-Generated reports:
 
--   deployment_report.txt
--   security_report.txt
+<img width="1920" height="918" alt="ai security analysis" src="https://github.com/user-attachments/assets/df268a11-4624-4f61-ae1c-f2142e478721" />
 
-# Resume Highlights
 
--   Built a complete CI/CD pipeline.
--   Automated Docker deployments.
--   Integrated validation and security scripts.
--   Implemented AI build reporting.
--   Deployed on AWS EC2.
--   Added health monitoring and deployment reports.
+#DEVSECOPS SECURITY SCAN
 
-# Author
+
+<img width="1920" height="918" alt="devsecops security scan" src="https://github.com/user-attachments/assets/aad726af-2a3d-4cfe-8e9b-c447270717e5" />
+
+
+#APPLICATION HEALTH
+
+
+<img width="1920" height="918" alt="application health" src="https://github.com/user-attachments/assets/4fad7d70-d0f0-43eb-bf84-5b1804282d81" />
+
+
+#PIPELINE SUMMARY
+
+
+<img width="1920" height="918" alt="pipeline summary" src="https://github.com/user-attachments/assets/84d8ffe8-9989-4205-9957-67438348da90" />
+
+
+#AI DEPLOYMENT REPORT
+
+
+<img width="1920" height="918" alt="ai deployment report" src="https://github.com/user-attachments/assets/6d4bb2cf-62d1-4949-9d98-706695929c26" />
+
+
+#JENKINS PIPELINE SUCCESS
+
+
+<img width="1920" height="918" alt="jenkins pipeline success" src="https://github.com/user-attachments/assets/4f8f05c3-5259-4133-8c84-30faa2ee61e5" />
+
+
+
+---
+
+# ▶ Running the Project
+
+Clone the repository
+
+```bash
+git clone https://github.com/manishgowda17/enterprise-devops-project.git
+```
+
+Go to project directory
+
+bash
+cd enterprise-devops-project
+```
+Build Docker image
+
+```bash
+docker build -f docker/Dockerfile -t enterprise-devops .
+```
+
+Run using Docker Compose
+
+bash
+docker compose -f docker/docker-compose.yml up -d
+```
+
+Access application
+
+```
+http://<EC2-Public-IP>
+```
+
+---
+
+#  Features
+
+- Automated CI/CD Pipeline
+- Dockerized Application
+- Multi-container Deployment
+- Reverse Proxy with Nginx
+- PostgreSQL Integration
+- Redis Integration
+- AWS EC2 Deployment
+- Health Monitoring
+- AI Deployment Analysis
+- DevSecOps Security Scan
+
+---
+
+#  Learning Outcomes
+
+Through this project, I gained practical experience with:
+
+- CI/CD Automation
+- Docker & Docker Compose
+- Jenkins Pipelines
+- Reverse Proxy Configuration
+- PostgreSQL Integration
+- Redis Integration
+- AWS EC2 Deployment
+- Production Deployment Workflow
+- Health Monitoring
+- Enterprise DevOps Practices
+
+---
+
+#  Author
 
 **Manish Gowda S N**
 
-DevOps Engineer \| AWS \| Docker \| Jenkins \| Python \| Linux
+Aspiring DevOps Engineer
 
-# License
+GitHub: https://github.com/manishgowda17
 
-MIT License
+LinkedIn: *(Add your LinkedIn URL)*
 
-If this repository helped you, please ⭐ star it.
-  
+---
+
+## ⭐ If you found this project useful, consider giving it a star!
