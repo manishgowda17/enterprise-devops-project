@@ -288,6 +288,13 @@ AWS EC2
 <img width="1920" height="918" alt="jenkins pipeline success" src="https://github.com/user-attachments/assets/4f8f05c3-5259-4133-8c84-30faa2ee61e5" />
 
 
+#DASHBOARD
+
+
+<img width="1920" height="918" alt="ss" src="https://github.com/user-attachments/assets/ebd0b8f2-e800-441c-942c-4e430f7ca7b8" />
+
+
+
 
 ---
 
