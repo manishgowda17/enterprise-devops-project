@@ -4,9 +4,6 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-      environment:
-        BUILD_NUMBER: ${BUILD_NUMBER}
-        ENVIRONMENT: Production
 
     image: enterprise-devops:latest
 
