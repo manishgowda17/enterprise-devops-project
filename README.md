@@ -366,7 +366,9 @@ Aspiring DevOps Engineer
 
 GitHub: https://github.com/manishgowda17
 
-LinkedIn: *(Add your LinkedIn URL)*
+LinkedIn: www.linkedin.com/in/
+manish-gowda-s-n-a75a19332
+
 
 ---
 
