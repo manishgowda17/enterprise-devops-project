@@ -365,18 +365,8 @@ Through this project, I gained practical experience with:
 
 ---
 
-#  Author
-
-**Manish Gowda S N**
-
-Aspiring DevOps Engineer
-
-GitHub: https://github.com/manishgowda17
-
 LinkedIn: www.linkedin.com/in/
 manish-gowda-s-n-a75a19332
 
 
----
 
-## ⭐ If you found this project useful, consider giving it a star!
