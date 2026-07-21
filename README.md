@@ -1,6 +1,6 @@
 
   
-# Enterprise DevOps Platform
+# Enterprise CI/CD DevOps Platform
 
 An end-to-end Enterprise DevOps Project demonstrating a complete CI/CD pipeline using **Jenkins**, **Docker**, **Docker Compose**, **Nginx**, **PostgreSQL**, **Redis**, and **AWS EC2**.
 
